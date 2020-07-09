@@ -19,8 +19,6 @@ class _InputPageState extends State<InputPage> {
   final loanTerm = TextEditingController();
   int selectedRadio;
 
-
-
   @override
   void initState() {
     super.initState();
@@ -34,6 +32,20 @@ class _InputPageState extends State<InputPage> {
   }
 
   int interest = 5;
+  bool _isTaxVisible = false;
+  bool _isInsuranceVisible = false;
+
+  void showTaxButton() {
+    setState(() {
+      _isTaxVisible = !_isTaxVisible;
+    });
+  }
+
+  void showInsuranceButton() {
+    setState(() {
+      _isInsuranceVisible = !_isInsuranceVisible;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +65,7 @@ class _InputPageState extends State<InputPage> {
           children: [
             //HOME VALUE
             ReusableTextFormFieldWithPrefix(
-                prefixIcon: FontAwesomeIcons.home,
-                theLabelText: 'Home Value'),
+                prefixIcon: FontAwesomeIcons.home, theLabelText: 'Home Value'),
             //TODO: force the focus to stay on the textfield when selecting the radio button
             //DOWN PAYMENT
             Expanded(
@@ -109,12 +120,12 @@ class _InputPageState extends State<InputPage> {
                   theLabelText: 'Loan Amount'),
             ),
             // INTEREST RATE TEXT
-              Text(
-                'Interest rate: $interest %',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
+            Text(
+              'Interest rate: $interest %',
+              style: TextStyle(
+                fontSize: 18,
               ),
+            ),
             // INTEREST RATE SLIDER
             Expanded(
               child: Slider(
@@ -133,14 +144,15 @@ class _InputPageState extends State<InputPage> {
             //LOAN TERM
             Expanded(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
                   Container(
                     width: 230,
                     child: ReusableTextFormFieldWithSuffix(
-                        prefixIcon: FontAwesomeIcons.calendarAlt,
-                        theLabelText: 'Loan Term',
-                        theSuffix: 'Year(s)'),
+                      prefixIcon: FontAwesomeIcons.calendarAlt,
+                      theLabelText: 'Loan Term',
+                      theSuffix: 'Year(s)',
+                    ),
                   ),
                 ],
               ),
@@ -149,13 +161,25 @@ class _InputPageState extends State<InputPage> {
             //ANNUAL TAX
             Expanded(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 230,
-                    child: ReusableTextFormFieldWithPrefix(
-                        prefixIcon: FontAwesomeIcons.fileInvoiceDollar,
-                        theLabelText: 'Annual Tax'),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  FlatButton(
+                    child: _isTaxVisible == false
+                        ? Text('Add tax')
+                        : Text('Remove tax'),
+                    onPressed: showTaxButton,
+                  ),
+                  Expanded(
+                    child: Visibility(
+                      visible: _isTaxVisible,
+                      child: Container(
+                        width: 200,
+                        child: ReusableTextFormFieldWithPrefix(
+                          prefixIcon: FontAwesomeIcons.fileInvoiceDollar,
+                          theLabelText: 'Annual Tax',
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -164,18 +188,30 @@ class _InputPageState extends State<InputPage> {
             //INSURANCE
             Expanded(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 230,
-                    child: ReusableTextFormFieldWithPrefix(
-                        prefixIcon: FontAwesomeIcons.shieldAlt,
-                        theLabelText: 'Insurance'),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  FlatButton(
+                    child: _isInsuranceVisible == false
+                        ? Text('Add insurance')
+                        : Text('Remove insurance'),
+                    onPressed: showInsuranceButton,
+                  ),
+                  Expanded(
+                    child: Visibility(
+                      visible: _isInsuranceVisible,
+                      child: Container(
+                        width: 200,
+                        child: ReusableTextFormFieldWithPrefix(
+                          prefixIcon: FontAwesomeIcons.shieldAlt,
+                          theLabelText: 'Insurance',
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            //TODO: customized to fit the whole bottom width of the screen
+            //CALCULATE BUTTON
             Container(
               width: double.infinity,
               margin: EdgeInsets.only(top: 20.0),
