@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_text_field_with_prefix.dart';
 import 'reusable_text_field_with_suffix.dart';
+import 'constants.dart';
 
 //TODO: set up the landscape mode not to overflood
 
-const accentColor = Color(0xFF7cfc00);
-const backgroundColor = Color(0xFF1D1E33);
+
 
 class InputPage extends StatefulWidget {
   @override
@@ -32,7 +32,7 @@ class _InputPageState extends State<InputPage> {
     });
   }
 
-  int interest = 5;
+  int _interest = 5;
   bool _isTaxVisible = false;
   bool _isInsuranceVisible = false;
 
@@ -86,7 +86,7 @@ class _InputPageState extends State<InputPage> {
                   Radio(
                     value: 1,
                     groupValue: selectedRadio,
-                    activeColor: accentColor,
+                    activeColor: kAccentColor,
                     onChanged: (val) {
                       setSelectedRadio(val);
                     },
@@ -100,7 +100,7 @@ class _InputPageState extends State<InputPage> {
                   Radio(
                     value: 2,
                     groupValue: selectedRadio,
-                    activeColor: accentColor,
+                    activeColor: kAccentColor,
                     onChanged: (val) {
                       setSelectedRadio(val);
                     },
@@ -122,7 +122,7 @@ class _InputPageState extends State<InputPage> {
             ),
             // INTEREST RATE TEXT
             Text(
-              'Interest rate: $interest %',
+              'Interest rate: $_interest %',
               style: TextStyle(
                 fontSize: 18,
               ),
@@ -130,14 +130,14 @@ class _InputPageState extends State<InputPage> {
             // INTEREST RATE SLIDER
             Expanded(
               child: Slider(
-                value: interest.toDouble(),
+                value: _interest.toDouble(),
                 min: 0.0,
                 max: 25.0,
-                activeColor: accentColor,
-                inactiveColor: backgroundColor,
+                activeColor: kAccentColor,
+                inactiveColor: kBackgroundColor,
                 onChanged: (double newValue) {
                   setState(() {
-                    interest = newValue.round();
+                    _interest = newValue.round();
                   });
                 },
               ),
@@ -224,7 +224,7 @@ class _InputPageState extends State<InputPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50.0),
                 ),
-                color: accentColor,
+                color: kAccentColor,
                 textColor: Colors.black,
                 padding: EdgeInsets.all(8.0),
                 splashColor: Colors.transparent,

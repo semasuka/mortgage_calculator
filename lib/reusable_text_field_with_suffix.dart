@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'input_page.dart';
+import 'constants.dart';
 
-const BorderStyleRadius = OutlineInputBorder(
-  borderRadius: BorderRadius.all(
-    Radius.circular(40.0),
-  ),
-);
-const double IconSize = 20;
-const double FontSize = 18;
 
 class ReusableTextFormFieldWithSuffix extends StatelessWidget {
   ReusableTextFormFieldWithSuffix(
@@ -26,16 +19,16 @@ class ReusableTextFormFieldWithSuffix extends StatelessWidget {
       autofocus: false,
       decoration: InputDecoration(
         filled: true,
-        fillColor: backgroundColor,
-        enabledBorder : BorderStyleRadius,
-        border: BorderStyleRadius,
+        fillColor: kBackgroundColor,
+        enabledBorder : kBorderStyleRadius,
+        border: kBorderStyleRadius,
         prefixIcon: Icon(
           prefixIcon,
-          size: IconSize,
+          size: kIconSize,
         ),
         suffixText: theSuffix,
         suffixStyle: TextStyle(
-          fontSize: FontSize,
+          fontSize: kFontSize,
         ),
         labelText: theLabelText,
       ),

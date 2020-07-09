@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'reusable_text_field_with_suffix.dart';
-import 'input_page.dart';
+import 'constants.dart';
 
 class ReusableTextFormFieldWithPrefix extends StatelessWidget {
   ReusableTextFormFieldWithPrefix(
@@ -16,16 +15,16 @@ class ReusableTextFormFieldWithPrefix extends StatelessWidget {
       autofocus: false,
       decoration: InputDecoration(
         filled: true,
-        fillColor: backgroundColor,
-        enabledBorder: BorderStyleRadius,
-        border: BorderStyleRadius,
+        fillColor: kBackgroundColor,
+        enabledBorder: kBorderStyleRadius,
+        border: kBorderStyleRadius,
         prefixIcon: Icon(
           prefixIcon,
-          size: IconSize,
+          size: kIconSize,
         ),
         prefixText: '\$ ',
         prefixStyle: TextStyle(
-          fontSize: FontSize,
+          fontSize: kFontSize,
         ),
         labelText: theLabelText,
       ),
