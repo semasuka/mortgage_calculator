@@ -129,26 +129,33 @@ class _InputPageState extends State<InputPage> {
             ),
             // INTEREST RATE SLIDER
             Expanded(
-              child: Slider(
-                value: _interest.toDouble(),
-                min: 0.0,
-                max: 25.0,
-                activeColor: kAccentColor,
-                inactiveColor: kBackgroundColor,
-                onChanged: (double newValue) {
-                  setState(() {
-                    _interest = newValue.round();
-                  });
-                },
+              child: SliderTheme(
+                data: SliderTheme.of(context).copyWith(
+                  activeTrackColor: kAccentColor,
+                  inactiveTrackColor: Color(0xFF8D8E98),
+                  thumbColor: kAccentColor,
+                  overlayColor: Color(0x297cfc00),
+                  thumbShape: RoundSliderThumbShape(enabledThumbRadius: 13.0),
+                  overlayShape: RoundSliderOverlayShape(overlayRadius: 25.0),
+                ),
+                child: Slider(
+                  value: _interest.toDouble(),
+                  min: 0.0,
+                  max: 25.0,
+                  onChanged: (double newValue) {
+                    setState(() {
+                      _interest = newValue.round();
+                    });
+                  },
+                ),
               ),
             ),
             //LOAN TERM
             Expanded(
               child: Row(
-                //crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    width: 230,
+                    width: kFieldWidth,
                     child: ReusableTextFormFieldWithSuffix(
                       prefixIcon: FontAwesomeIcons.calendarAlt,
                       theLabelText: 'Loan Term',
@@ -177,7 +184,7 @@ class _InputPageState extends State<InputPage> {
                     child: Visibility(
                       visible: _isTaxVisible,
                       child: Container(
-                        width: 200,
+                        width: kFieldWidth,
                         child: ReusableTextFormFieldWithPrefix(
                           prefixIcon: FontAwesomeIcons.fileInvoiceDollar,
                           theLabelText: 'Annual Tax',
@@ -204,7 +211,7 @@ class _InputPageState extends State<InputPage> {
                     child: Visibility(
                       visible: _isInsuranceVisible,
                       child: Container(
-                        width: 200,
+                        width: kFieldWidth,
                         child: ReusableTextFormFieldWithPrefix(
                           prefixIcon: FontAwesomeIcons.shieldAlt,
                           theLabelText: 'Insurance',

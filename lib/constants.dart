@@ -10,3 +10,4 @@ const kBorderStyleRadius = OutlineInputBorder(
 );
 const double kIconSize = 20;
 const double kFontSize = 18;
+const double kFieldWidth = 230;
