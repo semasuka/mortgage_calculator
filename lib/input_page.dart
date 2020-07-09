@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'reusable_text_field_with_prefix.dart';
+import 'reusable_text_field_with_suffix.dart';
 
 //TODO: set up the landscape mode not to overflood
 
@@ -144,7 +145,7 @@ class _InputPageState extends State<InputPage> {
             //LOAN TERM
             Expanded(
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                //crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
                     width: 230,
@@ -157,17 +158,20 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            //TODO: create a button that toggle the Tax text form field
+            //TODO: designed the toggle button
             //ANNUAL TAX
             Expanded(
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+//                crossAxisAlignment: CrossAxisAlignment.,
                 children: <Widget>[
                   FlatButton(
                     child: _isTaxVisible == false
                         ? Text('Add tax')
                         : Text('Remove tax'),
                     onPressed: showTaxButton,
+                  ),
+                  SizedBox(
+                    width: 47,
                   ),
                   Expanded(
                     child: Visibility(
@@ -240,91 +244,3 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
-class ReusableTextFormFieldWithPrefix extends StatelessWidget {
-  ReusableTextFormFieldWithPrefix(
-      {@required this.prefixIcon, @required this.theLabelText});
-
-  final IconData prefixIcon;
-  final String theLabelText;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      autofocus: false,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: backgroundColor,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(40.0),
-          ),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(40.0),
-          ),
-        ),
-        prefixIcon: Icon(
-          prefixIcon,
-          size: 20,
-        ),
-        prefixText: '\$ ',
-        prefixStyle: TextStyle(
-          fontSize: 18,
-        ),
-        labelText: theLabelText,
-      ),
-      //controller: homeValue,
-      keyboardType: TextInputType.numberWithOptions(decimal: true),
-      inputFormatters: <TextInputFormatter>[
-        WhitelistingTextInputFormatter.digitsOnly
-      ],
-    );
-  }
-}
-
-class ReusableTextFormFieldWithSuffix extends StatelessWidget {
-  ReusableTextFormFieldWithSuffix(
-      {@required this.prefixIcon,
-      @required this.theSuffix,
-      @required this.theLabelText});
-
-  final IconData prefixIcon;
-  final String theSuffix;
-  final String theLabelText;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      autofocus: false,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: backgroundColor,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(40.0),
-          ),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(40.0),
-          ),
-        ),
-        prefixIcon: Icon(
-          prefixIcon,
-          size: 20,
-        ),
-        suffixText: theSuffix,
-        suffixStyle: TextStyle(
-          fontSize: 18,
-        ),
-        labelText: theLabelText,
-      ),
-      //controller: homeValue,
-      keyboardType: TextInputType.numberWithOptions(decimal: true),
-      inputFormatters: <TextInputFormatter>[
-        WhitelistingTextInputFormatter.digitsOnly
-      ],
-    );
-  }
-}
