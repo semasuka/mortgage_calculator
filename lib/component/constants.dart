@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 
 const kAccentColor = Color(0xFF7cfc00);
-const kBackgroundColor = Color(0xFF1D1E33);
+const kBackgroundColorField = Color(0xFF1D1E33);
+const kBackgroungColor = Color(0xFF0a0e21);
 const kBorderStyleRadius = OutlineInputBorder(
   borderRadius: BorderRadius.all(
     Radius.circular(40.0),

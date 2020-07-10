@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'input_page.dart';
+import '../screens/input_page.dart';
+import 'constants.dart';
 
 void main() {
   runApp(MortgageCalculator());
@@ -11,9 +12,9 @@ class MortgageCalculator extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        primaryColor: Color(0xFF0a0e21),
-        scaffoldBackgroundColor: Color(0xFF0a0e21),
-        accentColor: Color(0xFF7cfc00),
+        primaryColor: kBackgroungColor,
+        scaffoldBackgroundColor: kBackgroungColor,
+        accentColor: kAccentColor,
       ),
       home: InputPage(),
     );

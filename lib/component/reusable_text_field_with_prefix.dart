@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'constants.dart';
+import '../component/constants.dart';
 
-
-class ReusableTextFormFieldWithSuffix extends StatelessWidget {
-  ReusableTextFormFieldWithSuffix(
-      {@required this.prefixIcon,
-        @required this.theSuffix,
-        @required this.theLabelText});
+class ReusableTextFormFieldWithPrefix extends StatelessWidget {
+  ReusableTextFormFieldWithPrefix(
+      {@required this.prefixIcon, @required this.theLabelText});
 
   final IconData prefixIcon;
-  final String theSuffix;
   final String theLabelText;
 
   @override
@@ -19,15 +15,15 @@ class ReusableTextFormFieldWithSuffix extends StatelessWidget {
       autofocus: false,
       decoration: InputDecoration(
         filled: true,
-        fillColor: kBackgroundColor,
-        enabledBorder : kBorderStyleRadius,
+        fillColor: kBackgroundColorField,
+        enabledBorder: kBorderStyleRadius,
         border: kBorderStyleRadius,
         prefixIcon: Icon(
           prefixIcon,
           size: kIconSize,
         ),
-        suffixText: theSuffix,
-        suffixStyle: TextStyle(
+        prefixText: '\$ ',
+        prefixStyle: TextStyle(
           fontSize: kFontSize,
         ),
         labelText: theLabelText,

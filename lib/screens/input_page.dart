@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'reusable_text_field_with_prefix.dart';
-import 'reusable_text_field_with_suffix.dart';
-import 'constants.dart';
-import 'reusable_button.dart';
+import '../component/reusable_text_field_with_prefix.dart';
+import '../component/reusable_text_field_with_suffix.dart';
+import '../component/constants.dart';
+import '../component/reusable_button.dart';
 import 'result_page.dart';
 
 //TODO: set up the landscape mode not to overflood
@@ -169,7 +169,6 @@ class _InputPageState extends State<InputPage> {
             //ANNUAL TAX
             Expanded(
               child: Row(
-//                crossAxisAlignment: CrossAxisAlignment.,
                 children: <Widget>[
                   FlatButton(
                     child: _isTaxVisible == false
