@@ -3,10 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_text_field_with_prefix.dart';
 import 'reusable_text_field_with_suffix.dart';
 import 'constants.dart';
+import 'reusable_button.dart';
+import 'result_page.dart';
 
 //TODO: set up the landscape mode not to overflood
-
-
 
 class InputPage extends StatefulWidget {
   @override
@@ -223,26 +223,14 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             //CALCULATE BUTTON
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 20.0),
-              height: 80.0,
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                color: kAccentColor,
-                textColor: Colors.black,
-                padding: EdgeInsets.all(8.0),
-                splashColor: Colors.transparent,
-                onPressed: () {
-                  /*...*/
-                },
-                child: Text(
-                  'calculate'.toUpperCase(),
-                  style: TextStyle(fontSize: 30.0),
-                ),
-              ),
+            ReusableButton(
+              theText: 'calculate',
+              theRoute: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ResultsPage()),
+                );
+              },
             ),
           ],
         ),
@@ -250,4 +238,3 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
