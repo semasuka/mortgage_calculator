@@ -30,7 +30,7 @@ class ResultsPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 100, horizontal: 30),
                       child: Text(
                           //TODO: print the monthly mortgage
-                          'Your monthly payment is: ',
+                          'Your Monthly Payment Is: ',
                         style: TextStyle(
                           fontSize: 40,
                         ),

@@ -6,7 +6,9 @@ import '../component/constants.dart';
 import '../component/reusable_button.dart';
 import 'result_page.dart';
 
-//TODO: set up the landscape mode not to overflood
+//TODO: set up the landscape mode not to over flood
+
+//TODO: avoid the widget being squeezed when keyboard is  on
 
 class InputPage extends StatefulWidget {
   @override
@@ -16,8 +18,12 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   final homeValue = TextEditingController();
   final downPayment = TextEditingController();
-  final loanAmount = TextEditingController();
-  final loanTerm = TextEditingController();
+  final downPaymentPercent = TextEditingController();
+  final principle = TextEditingController();
+  final years = TextEditingController();
+  final tax = TextEditingController();
+  final insurance = TextEditingController();
+
   int selectedRadio;
 
   @override
@@ -48,9 +54,11 @@ class _InputPageState extends State<InputPage> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text(
           'Mortgage Calculator',
@@ -66,7 +74,10 @@ class _InputPageState extends State<InputPage> {
           children: [
             //HOME VALUE
             ReusableTextFormFieldWithPrefix(
-                prefixIcon: FontAwesomeIcons.home, theLabelText: 'Home Value'),
+              prefixIcon: FontAwesomeIcons.home,
+              theLabelText: 'Home Value',
+              input: homeValue,
+            ),
             //TODO: force the focus to stay on the textfield when selecting the radio button
             //DOWN PAYMENT
             Expanded(
@@ -77,11 +88,16 @@ class _InputPageState extends State<InputPage> {
                     child: selectedRadio == 1
                         ? ReusableTextFormFieldWithPrefix(
                             prefixIcon: FontAwesomeIcons.moneyBillAlt,
-                            theLabelText: 'Down Payment')
+                            theLabelText: 'Down Payment',
+                            input: downPayment,
+                            // input: ,
+                          )
                         : ReusableTextFormFieldWithSuffix(
                             prefixIcon: FontAwesomeIcons.moneyBillAlt,
                             theLabelText: 'Down Payment',
-                            theSuffix: '%'),
+                            theSuffix: '%',
+                            input: downPaymentPercent,
+                    ),
                   ),
                   Radio(
                     value: 1,
@@ -114,11 +130,14 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
+            //TODO: show the calculation of loan in the text field after inputting down payment
             //LOAN AMOUNT
             Expanded(
               child: ReusableTextFormFieldWithPrefix(
-                  prefixIcon: FontAwesomeIcons.handHoldingUsd,
-                  theLabelText: 'Loan Amount'),
+                prefixIcon: FontAwesomeIcons.handHoldingUsd,
+                theLabelText: 'Loan Amount',
+                input: principle,
+              ),
             ),
             // INTEREST RATE TEXT
             Text(
@@ -160,12 +179,12 @@ class _InputPageState extends State<InputPage> {
                       prefixIcon: FontAwesomeIcons.calendarAlt,
                       theLabelText: 'Loan Term',
                       theSuffix: 'Year(s)',
+                      input: years,
                     ),
                   ),
                 ],
               ),
             ),
-            //TODO: designed the toggle button
             //ANNUAL TAX
             Expanded(
               child: Row(
@@ -187,6 +206,7 @@ class _InputPageState extends State<InputPage> {
                         child: ReusableTextFormFieldWithPrefix(
                           prefixIcon: FontAwesomeIcons.fileInvoiceDollar,
                           theLabelText: 'Annual Tax',
+                          input: tax,
                         ),
                       ),
                     ),
@@ -194,7 +214,6 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            //TODO: create a button that toggle the Insurance text form field
             //INSURANCE
             Expanded(
               child: Row(
@@ -214,6 +233,7 @@ class _InputPageState extends State<InputPage> {
                         child: ReusableTextFormFieldWithPrefix(
                           prefixIcon: FontAwesomeIcons.shieldAlt,
                           theLabelText: 'Insurance',
+                          input: insurance,
                         ),
                       ),
                     ),

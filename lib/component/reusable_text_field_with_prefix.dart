@@ -4,14 +4,16 @@ import '../component/constants.dart';
 
 class ReusableTextFormFieldWithPrefix extends StatelessWidget {
   ReusableTextFormFieldWithPrefix(
-      {@required this.prefixIcon, @required this.theLabelText});
+      {@required this.prefixIcon, @required this.theLabelText, this.input});
 
   final IconData prefixIcon;
   final String theLabelText;
+  final TextEditingController input;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: input,
       autofocus: false,
       decoration: InputDecoration(
         filled: true,
